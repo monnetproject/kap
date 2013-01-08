@@ -1,0 +1,101 @@
+/**
+ * ********************************************************************************
+ * Copyright (c) 2011, Monnet Project All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met: *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer. * Redistributions in binary
+ * form must reproduce the above copyright notice, this list of conditions and
+ * the following disclaimer in the documentation and/or other materials provided
+ * with the distribution. * Neither the name of the Monnet Project nor the names
+ * of its contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE MONNET PROJECT BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * *******************************************************************************
+ */
+package eu.monnetproject.kap.laif;
+
+import eu.monnetproject.lang.Language;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ * @author John McCrae
+ */
+public class LAIFRuleSet {
+
+    private URI lexicon;
+    private final List<LAIFRule> rules;
+    private final Language language;
+    private final String appKey;
+    transient private final Map<URI, LAIFRule> _ruleMap = new HashMap<URI, LAIFRule>();
+    transient private final Map<String, LAIFRule> _keyMap = new HashMap<String, LAIFRule>();
+
+    public LAIFRuleSet(URI lexicon, Language language, String appKey) {
+        this(lexicon, new LinkedList<LAIFRule>(), language, appKey);
+    }
+
+    public LAIFRuleSet(URI lexicon, List<LAIFRule> rules, Language language, String appKey) {
+        this.lexicon = lexicon;
+        this.rules = rules;
+        this.language = language;
+        this.appKey = appKey;
+        for (LAIFRule rule : rules) {
+            _ruleMap.put(rule.resource, rule);
+            _keyMap.put(rule.key, rule);
+        }
+    }
+
+    public Map<URI, LAIFRule> ruleMap() {
+        return _ruleMap;
+    }
+
+    public Map<String, LAIFRule> keyMap() {
+        return _keyMap;
+    }
+
+    public void add(LAIFRule rule) {
+        rules.add(rule);
+        _ruleMap.put(rule.resource, rule);
+        _keyMap.put(rule.key, rule);
+    }
+
+    public void remove(LAIFRule rule) {
+        rules.remove(rule);
+        _ruleMap.remove(rule.resource);
+        _keyMap.remove(rule.key);
+    }
+
+    public URI getLexicon() {
+        return lexicon;
+    }
+
+    public void setLexicon(URI uri) {
+        this.lexicon = uri;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("AppKey: ").append(appKey).append(System.getProperty("line.separator"));
+        sb.append("Language: ").append(language).append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
+        for (LAIFRule rule : rules) {
+            sb.append(rule).append(System.getProperty("line.separator"));
+        }
+        return sb.toString();
+    }
+}

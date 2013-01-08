@@ -1,0 +1,350 @@
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon: <http://www.monnet-project.eu/lemon#> .
+AppKey: lemonsource
+Language: en
+Lexicon: http://monnetproject.deri.ie/lemonsource#lemon__en
+
+Key: Remove Entry
+Rule: [ :remove [ :form lemon:LexicalEntry ] ]  
+
+Key: Modify
+Rule: "Modify"
+
+Key: Add Entry
+Rule: [ :add [ :form lemon:LexicalEntry ] ]  
+
+Key: If your ontology uses a non-standard name to identify the label of a concept, please enter the URI here. Note RDFS and SKOS are supported by default
+Rule: "If your ontology uses a non-standard name to identify the label of a concept, please enter the URI here. Note RDFS and SKOS are supported by default"  
+
+Key: New lexicon
+Rule: [ :new [ :form lemon:Lexicon ] ]  
+
+Key: Turn on contextual help
+Rule: "Turn on contextual help"  
+
+Key: Senses
+Rule: "Senses"  
+
+Key: Invalid Value
+Rule: "Invalid Value"  
+
+Key: Remove Frame
+Rule: [ :remove [ :form lemon:Frame ] ]  
+
+Key: Indicate the preference of this form. A lexical entry should have a single canonical form, and any number of other forms. It may also have abstract forms, which are forms that do not occur in text, e.g., stems
+Rule: "Indicate the preference of this form. A lexical entry should have a single canonical form, and any number of other forms. It may also have abstract forms, which are forms that do not occur in text, e.g., stems"  
+
+Key: Generate a new lexicon using automatic values
+Rule: "Generate a new " [ :form lemon:Lexicon ] " using automatic values"  
+
+Key: No Pref
+Rule: "No Pref"  
+
+Key: close X
+Params: X
+Rule: "Close " $X  
+
+Key: Add Lexical Property
+Rule: [ :add "Lexical Property" ]  
+
+Key: Remove Form
+Rule: [ :remove [ :form lemon:LexicalForm ] ]  
+
+Key: Corresponding senses: 
+Rule: "Corresponding senses: "  
+
+Key: Add
+Rule: "Add"  
+
+Key: Abstract
+Rule: "Abstract"  
+
+Key: Help: on
+Rule: "Help: on"  
+
+Key: Remove context
+Rule: [ :remove [ :form lemon:context ] ]  
+
+Key: Languages
+Rule: "Languages"  
+
+Key: Remove relation group
+Rule: [ :remove "relation group" ]  
+
+Key: English
+Rule: "English"  
+
+Key: Definitions
+Rule: [ :form lemon:definition ; lexinfo:number lexinfo:plural ]  
+
+Key: Lemon Lexicon Editor
+Rule: "Lemon Lexicon Editor"  
+
+Key: Other
+Rule: "Other"  
+
+Key: Contexts
+Rule: [ :form lemon:context ; lexinfo:number lexinfo:plural ]  
+
+Key: add X
+Params: X
+Rule: "Add " $X
+
+Key: Add example
+Rule: [ :add [ :form lemon:example ] ]  
+
+Key: Remove Lexical Property
+Rule: [ :remove  ]
+
+Key: Generate only for labelled entities
+Rule: "Generate only for labelled entities"  
+
+Key: Start Generation
+Rule: "Start Generation"  
+
+Key: Forms
+Rule: "Forms"  
+
+Key: Some entities in this resource do not have a language:
+Rule: "Some entities in this resource do not have a language:"  
+
+Key: Download lexicon as RDF 
+Rule: "Download lexicon as RDF"  
+
+Key: Add Sense
+Rule: [ :add [ :form lemon:LexicalSense ] ]  
+
+Key: Public lexica
+Rule: "Public " [ :form lemon:Lexicon ; lexinfo:number lexinfo:plural ]  
+
+Key: Spanish
+Rule: "Spanish"  
+
+Key: Search results: 
+Rule: "Search results: "  
+
+Key: Home 
+Rule: "Home"  
+
+Key: Add Frame
+Rule: [ :add [ :form lemon:Frame ] ]  
+
+Key: Lexicon names
+Rule: [ :form lemon:Lexicon ] " names"  
+
+Key: Infer
+Rule: "Infer"  
+
+Key: Help: off
+Rule: "Help: off"  
+
+Key: Remove definition
+Rule: [ :remove [ :form lemon:definition ] ]  
+
+Key: Upload an ontology file here, the system will generate a lexical entry for each entity in the ontology
+Rule: "Upload an ontology file here, the system will generate a lexical entry for each entity in the ontology"  
+
+Key: Welcome to lemon source
+Rule: "Welcome to lemon source"  
+
+Key: Lexical Entry
+Rule: [ :form lemon:LexicalEntry ]  
+
+Key: Search
+Rule: "Search"  
+
+Key: Lexicon generation
+Rule: [ :form lemon:Lexicon ] " generation"  
+
+Key: Download all lexica as RDF
+Rule: "Download all lexica as RDF"  
+
+Key: Help is now on! Click any UI element to see a help message
+Rule: "Help is now on! Click any UI element to see a help message"  
+
+Key: Go to: 
+Rule: "Go to: "  
+
+Key: Relations
+Rule: "Relations"  
+
+Key: Import
+Rule: "Import"  
+
+Key: Syntactic Behaviors
+Rule: [ :form lemon:synBehavior ; lexinfo:number lexinfo:plural ]  
+
+Key: Invalid page or resource not found
+Rule: "Invalid page or resource not found"  
+
+Key: Public Lexica
+Rule: "Public " [ :form lemon:Lexicon ; lexinfo:number lexinfo:plural ]  
+
+Key: Lexica
+Rule: [ :form lemon:Lexicon ; lexinfo:number lexinfo:plural ]  
+
+Key: Add Form
+Rule: [ :add [ :form lemon:LexicalForm ] ]  
+
+Key: Lexicon Name
+Rule: [ :form lemon:Lexicon ] " Name"  
+
+Key: Remove
+Rule: "Remove"  
+
+Key: No marker
+Rule: "No marker"  
+
+Key: <p>lemon source is a space for the collaborative development of ontology-lexica.
+    Here you can upload your lexica and access them from anywhere as well as sharing them with your 
+    colleagues. In addition we maintain a set of publically available lexica that can be edited by 
+    anyone. To view the set of public lexica click <a href='#Special:PublicLexica'>
+    here</a>.</p>
+    <p>lemon source builds on the lemon model which is a flexible 
+    model for creating and sharing lexica on the semantic web and uses the 
+    <a href='http://www.lexinfo.net'>LexInfo</a> model for describing data 
+    categories in the model.</p>
+    <p>In addition lemon source integrates a state-of-the-art automatic system 
+    for generating lexica using NLP tools, that allows lemon lexica to be 
+    automatically inferred from ontology files specified in OWL. 
+    Note that this feature is only available to logged-in users, which is 
+    performed by <a href='http://openid.net'>OpenID</a> so you can uses 
+    existing accounts for Google or Yahoo.</p>
+    <p>lemon source was developed as part of the 
+    <a href='http://www.monnet-project.eu/'>Monnet project</a></p>                                        
+Rule: "<p>lemon source is a space for the collaborative development of ontology-lexica.
+    Here you can upload your lexica and access them from anywhere as well as sharing them with your 
+    colleagues. In addition we maintain a set of publically available lexica that can be edited by 
+    anyone. To view the set of public lexica click <a href='#Special:PublicLexica'>
+    here</a>.</p>
+    <p>lemon source builds on the lemon model which is a flexible 
+    model for creating and sharing lexica on the semantic web and uses the 
+    <a href='http://www.lexinfo.net'>LexInfo</a> model for describing data 
+    categories in the model.</p>
+    <p>In addition lemon source integrates a state-of-the-art automatic system 
+    for generating lexica using NLP tools, that allows lemon lexica to be 
+    automatically inferred from ontology files specified in OWL. 
+    Note that this feature is only available to logged-in users, which is 
+    performed by <a href='http://openid.net'>OpenID</a> so you can uses 
+    existing accounts for Google or Yahoo.</p>
+    <p>lemon source was developed as part of the 
+    <a href='http://www.monnet-project.eu/'>Monnet project</a></p>"  
+
+Key: Property Values
+Rule: [ :form lemon:PropertyValue ; lexinfo:number lexinfo:plural ]  
+
+Key: Generation
+Rule: "Generation"  
+
+Key: Add relation group
+Rule: [ :add "relation group" ]  
+
+Key: Entities without language are in:
+Rule: "Entities without language are in:"  
+
+Key: OK
+Rule: "OK"  
+
+Key: Upload
+Rule: "Upload"  
+
+Key: Decompositions
+Rule: "Decompositions"  
+
+Key: Remove example
+Rule: [ :remove [ :form lemon:example ] ]  
+
+Key: Add definition
+Rule: [ :add [ :form lemon:definition ] ]  
+
+Key: Are you sure you want to delete this element? Changes cannot be undone
+Rule: "Are you sure you want to delete this element? Changes cannot be undone"  
+
+Key: Specify the name of this lexicon.
+Rule: "Specify the name of this " [ :form lemon:Lexicon ]  
+
+Key: Canonical
+Rule: "Canonical"  
+
+Key: Label URI (optional)
+Rule: "Label URI (optional)"  
+
+Key: remove X
+Params: X
+Rule: "remove " $X
+
+Key: Lexical entries
+Rule: [ :form lemon:LexicalEntry ]  
+
+Key: Remove Sense
+Rule: [ :remove [ :form lemon:LexicalSense ] ]  
+
+Key: Groups
+Rule: "Groups"  
+
+Key: Choose an identifier for the lexica generated by the file
+Rule: "Choose an identifier for the lexica generated by the file"  
+
+Key: Next
+Rule: "Next"  
+
+Key: Add context
+Rule: [ :add [ :form lemon:context ] ]  
+
+Key: Generate (log-in required)
+Rule: "Generate (log-in required)"  
+
+Key: Yes
+Rule: "Yes"  
+
+Key: My Lexica
+Rule: "My " [ :form lemon:Lexicon ; lexinfo:number lexinfo:plural ]  
+
+Key: <lela:form reference=?X/> Properties
+Rule: "Properties"  
+
+Key: Generate
+Rule: "Generate"  
+
+Key: No
+Rule: "No"  
+
+Key: Close lexicon
+Rule: [ :close [ :form lemon:Lexicon ] ]  
+
+Key: Arguments
+Rule: "Arguments"  
+
+Key: Confirm deletion
+Rule: "Confirm deletion"  
+
+Key: Ontology file
+Rule: "Ontology file"  
+
+Key: Import an existing lemon file
+Rule: "Import an existing lemon file"  
+
+Key: German
+Rule: "German"  
+
+Key: My lexica
+Rule: "My " [ :form lemon:Lexicon ; lexinfo:number lexinfo:plural ]  
+
+Key: Morphosyntactic Property
+Rule: [ :form lemon:property ]  
+
+Key: Add decompositions
+Rule: [ :add [ :form lemon:decomposition ] ]  
+
+Key: Examples
+Rule: [ :form lemon:example ; lexinfo:number lexinfo:plural ]  
+
+Key: new X
+Params: X
+Rule: "New " $X
+
+Key: If this box is checked then only entities that have a stated label will be used for generation. Otherwise, a label for each unlabelled entity will be guessed from the URI
+Rule: "If this box is checked then only entities that have a stated label will be used for generation. Otherwise, a label for each unlabelled entity will be guessed from the URI"  
+
+Key: Property
+Rule: "Property"  
