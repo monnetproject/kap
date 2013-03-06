@@ -48,8 +48,11 @@
     </pluginRepositories>
     
     <modules>
-        <module>core</module>    
+        <module>core</module>
+        <module>gelato</module>
+        <module>gelato.web</module>    
         <module>laif</module>
+        <module>laif.editor</module>
   </modules>
   
     <dependencies>

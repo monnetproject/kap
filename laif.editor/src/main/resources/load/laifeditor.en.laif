@@ -1,0 +1,64 @@
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon: <http://www.monnet-project.eu/lemon#> .
+AppKey: laifeditor
+Language: en
+;Lexicon: http://monnetproject.deri.ie/lemonsource#lemon__en
+
+Key: Key
+Rule: "Key"
+
+Key: Rule
+Rule: "Rule"
+
+Key: User Call
+Rule: "User Call"
+
+Key: lemon Form
+Rule: "Lemon Form"
+
+Key: Result
+Rule: "Result"
+
+Key: LAIF Editor
+Rule: "LAIF Editor"
+
+Key: Lexica
+Rule: "Lexica"
+
+Key: Function Rules
+Rule: "Function Rules"
+
+Key: Simple Rules
+Rule: "Simple Rules"
+
+Key: Save
+Rule: "Save"
+
+Key: Yes
+Rule: "Yes"
+
+Key: No
+Rule: "No"
+
+Key: Confirm save
+Rule: "Confirm save"
+
+Key: AddX
+URI: :AddX
+Params: X
+Rule: "Add " $X
+
+Key: Add Lexicon
+Rule: [ :AddX "Lexicon" ]
+
+Key: Add Functional Rule
+Rule: [ :AddX "Functional Rule" ]
+
+Key: Add Simple Rule
+Rule: [ :AddX "Simple Rule" ]
+
+Key: Add User Call
+Rule: [ :AddX "User Call" ]
+
+Key: Add lemon Form
+Rule: [ :AddX "Lemon Form" ]

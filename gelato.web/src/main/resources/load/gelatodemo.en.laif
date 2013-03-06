@@ -1,0 +1,47 @@
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#> .
+@prefix lemon: <http://www.monnet-project.eu/lemon#> .
+AppKey: gelatodemo
+Language: en
+
+Key: GELATO demonstrator
+Rule: "GELATO demonstrator"
+
+Key: Select a lexicon
+Rule: "Select a lexicon"
+
+
+Key: Select an entry
+Rule: "Select an entry"
+
+Key: Matrix
+Rule: "Matrix"
+
+Key: Derivation
+Rule: "Derviation"
+
+Key: Generate
+Rule: "Generate"
+
+Key: Modality
+Rule: "Modality"
+
+Key: Temporality
+Rule: "Temporality"
+
+Key: Positive
+Rule: "Positive"
+
+Key: Question
+Rule: "Question"
+
+Key: Plan
+Rule: "Plan"
+
+Key: Tree
+Rule: "Tree"
+
+Key: Realization
+Rule: "Realization"
+
+Key: Generate
+Rule: "Generate"

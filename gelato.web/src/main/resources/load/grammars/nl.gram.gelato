@@ -1,0 +1,275 @@
+S {
+ IfPlan => (S (S $1) (SBAR (CC "als") (S:sub $2)))
+ QuestionPlan => (S (CP $1) "?")
+ //PredicatePlan => (S (DP:1ps $1) (VP:1ps $2))
+ //PredicatePlan => (S (DP:2ps $1) (VP:2ps $2))
+ PredicatePlan => (S (DP:3ps $1) (VP:3ps $2))
+// PredicatePlan => (S (DP:2pp $1) (VP:2pp $2))
+ PredicatePlan => (S (DP:other $1) (VP:other $2))
+ PredicatePlan => (S:sub (DP:3ps $1) (VP:3ps:sub $2))
+ PredicatePlan => (S:sub (DP:other $1) (VP:other:sub $2))
+
+ ConjunctionPlan => (S (S $1) (SBAR (CC "en") (S $2)))
+ ConjunctionPlan => (S:sub (S:sub $1) (SBAR (CC "en") (S:sub $2)))
+ ConjunctionPlan => (S (S $1) (SBAR (CC ",") (S $*)))
+ ConjunctionPlan => (S:sub (S:sub $1) (SBAR (CC ",") (S:sub $*)))
+ ConjunctionPlan => (S $1)
+ ConjunctionPlan => (S:sub $1)
+}
+
+CP {
+ //PredicatePlan => (CP (C "kan") (IP (DP:1ps $1)) (VP:kann $2))
+ //PredicatePlan => (CP (C "kunt") (IP (DP:2ps $1)) (VP:kann $2))
+ PredicatePlan => (CP (C "kan") (IP (DP:3ps $1)) (VP:kann $2))
+ PredicatePlan => (CP (C "kunnen") (IP (DP:other $1)) (VP:kann $2))
+
+ //PredicatePlan => (CP (C "moet") (IP (DP:1ps $1)) (VP:muss $2))
+ //PredicatePlan => (CP (C "moet") (IP (DP:2ps $1)) (VP:muss $2))
+ PredicatePlan => (CP (C "moet") (IP (DP:3ps $1)) (VP:muss $2))
+ PredicatePlan => (CP (C "moeten") (IP (DP:other $1)) (VP:muss $2))
+
+ //PredicatePlan => (CP (C "zal") (IP (DP:1ps $1)) (VP:wird $2))
+ //PredicatePlan => (CP (C "zult") (IP (DP:2ps $1)) (VP:wird $2))
+ PredicatePlan => (CP (C "zal") (IP (DP:3ps $1)) (VP:wird $2))
+ PredicatePlan => (CP (C "zullen") (IP (DP:other $1)) (VP:wird $2))
+
+ //PredicatePlan => (CP (C "heb") (IP (DP:1ps $1)) (VP:past $2))
+ //PredicatePlan => (CP (C "hebt") (IP (DP:2ps $1)) (VP:past $2))
+ PredicatePlan => (CP (C "had") (IP (DP:other $1)) (VP:modpast $2))
+ PredicatePlan => (CP (C "heeft") (IP (DP:3ps $1)) (VP:past $2))
+ PredicatePlan => (CP (C "hebben") (IP (DP:other $1)) (VP:past $2))
+ 
+ //PredicatePlan[AdjectivePredicativeFrame] => (CP (C "ben") (IP (DP:1ps $1)) (VP:comp $2))
+ //PredicatePlan[AdjectivePredicativeFrame] => (CP (C "bent") (IP (DP:2ps $1)) (VP:comp $2))
+ PredicatePlan[AdjectivePredicativeFrame] => (CP (C "is") (IP (DP:3ps $1)) (VP:comp $2))
+ PredicatePlan[AdjectivePredicativeFrame] => (CP (C "zijn") (IP (DP:other $1)) (VP:comp $2))
+
+ //PredicatePlan => (CP (C:aux:1ps $2) (IP (DP:1ps $1) (VP:inf $2)))
+ //PredicatePlan => (CP (C:aux:2ps $2) (IP (DP:2ps $1) (VP:inf $2)))
+ PredicatePlan => (CP (C:3ps $2) (IP (DP:3ps $1) (VP:infcomp $2)))
+ PredicatePlan => (CP (C:other $2) (IP (DP:other $1) (VP:infcomp $2)))
+ //PredicatePlan => (CP (C:aux:2pp $2) (IP (DP:2pp $1) (VP:inf $2)))
+}
+
+DP {
+ EntryPlan ? partOfSpeech=properNoun => (DP:3ps (NP (NN $_)))
+ EntryPlan ? partOfSpeech=properNoun => (DP:3ps (NP (NN $_)))
+
+ EntryPlan ? number=massNoun => (DP:other (NP (NN $_)))
+ EntryPlan ? number=massNoun => (DP:other (NP (NN $_)))
+
+ EntryPlan ? gender=masculine => (DP:3ps (DT "een") (NP (NN $_)))
+ EntryPlan ? gender=feminine => (DP:3ps (DT "een") (NP (NN $_)))
+ EntryPlan ? gender=neuter => (DP:3ps (DT "een") (NP (NN $_)))
+
+ YouPlan => (DP:other (PRP "u"))
+
+ //Epsilon => (DP:1ps (Z:1ps! $1)) 
+ //Epsilon => (DP:2ps (Z:2ps! $1)) 
+ Epsilon => (DP:3ps (Z:3ps! $1)) 
+ Epsilon => (DP:other (Z:other! $1)) 
+ //Epsilon => (DP:2pp (Z:2pp! $1)) 
+ 
+ ObjectPlan => (DP:3ps $1)
+ ObjectPlan => (DP:other $1)
+}
+
+
+VP {
+ VerbPlan [AdjectivePredicativeFrame] => (VP:1ps (V "ben") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:2ps (V "bent") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:3ps (V "is") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:other (V "zijn") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:inf (ADJ $_) (V "zijn"))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:pastpart  (ADJ $_) (V "geweest"))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:comp (V $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:3ps:sub (ADJ $_) (V "is"))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:other:sub (ADJ $_) (V "zijn"))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:infcomp (ADJ $_))
+
+ VerbPlan [IntransitivePPFrame] ? number=singular and person=firstPerson and tense=present and mood=indicative => 
+  (VP:1ps (V $_) (PP (IN $MprepositionalAdjunct) (DP:3ps $1)))
+ VerbPlan [IntransitivePPFrame] ? number=singular and person=secondPerson and tense=present and mood=indicative =>
+  (VP:2ps (V $_) (PP (IN $MprepositionalAdjunct) (DP:3ps $1)))
+ VerbPlan [IntransitivePPFrame] ? number=singular and person=thirdPerson and tense=present and mood=indicative =>
+  (VP:3ps (V $_) (PP (IN $MprepositionalAdjunct) (DP:3ps $1)))
+ VerbPlan [IntransitivePPFrame] ? number=plural and person=secondPerson and tense=present and mood=indicative =>
+  (VP:2pp (V $_) (PP (IN $MprepositionalAdjunct) (DP:3ps $1)))
+ VerbPlan [IntransitivePPFrame] ? number=singular and person=firstPerson and tense=present and mood=indicative => 
+  (VP:1ps (V $_) (PP (IN $MprepositionalAdjunct) (DP:other $1)))
+ VerbPlan [IntransitivePPFrame] ? number=singular and person=secondPerson and tense=present and mood=indicative =>
+  (VP:2ps (V $_) (PP (IN $MprepositionalAdjunct) (DP:other $1)))
+ VerbPlan [IntransitivePPFrame] ? number=singular and person=thirdPerson and tense=present and mood=indicative =>
+  (VP:3ps (V $_) (PP (IN $MprepositionalAdjunct) (DP:other $1)))
+ VerbPlan [IntransitivePPFrame] ? number=plural and person=secondPerson and tense=present and mood=indicative =>
+  (VP:2pp (V $_) (PP (IN $MprepositionalAdjunct) (DP:other $1)))
+ VerbPlan [IntransitivePPFrame] ? tense=past and verbFormMood=participle => (VP:pastpart (V $_) (PP (IN $MprepositionalAdjunct) (DP:other $1)))
+ VerbPlan [IntransitivePPFrame] ? verbFormMood=infinitive => (VP:inf (PP (IN $MprepositionalAdjunct) (DP:3ps $1)) (V $_))
+ VerbPlan [IntransitivePPFrame] ? verbFormMood=infinitive => (VP:inf (PP (IN $MprepositionalAdjunct) (DP:other $1)) (V $_))
+ VerbPlan [IntransitivePPFrame] ? verbFormMood=infinitive => (VP:comp (PP (IN $MprepositionalAdjunct) (DP:3ps $1)) (V $_))
+ VerbPlan [IntransitivePPFrame] ? verbFormMood=infinitive => (VP:comp (PP (IN $MprepositionalAdjunct) (DP:other $1)) (V $_))
+ VerbPlan [IntransitivePPFrame] => (VP:other (V $_) (PP (IN $MprepositionalAdjunct) (DP:other $1)))
+ 
+ VerbPlan ? number=singular and person=firstPerson and tense=present and mood=indicative => (VP:1ps (V $_) (DP:3ps $*))
+ VerbPlan ? number=singular and person=secondPerson and tense=present and mood=indicative => (VP:2ps (V $_) (DP:3ps $*))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps (V $_) (DP:3ps $*))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps:sub (DP:3ps $*) (V $_))
+ VerbPlan ? number=plural and person=secondPerson and tense=present and mood=indicative => (VP:2pp (V $_) (DP:3ps $*))
+ VerbPlan ? number=singular and person=firstPerson and tense=present and mood=indicative => (VP:1ps (V $_) (DP:other $*))
+ VerbPlan ? number=singular and person=secondPerson and tense=present and mood=indicative => (VP:2ps (V $_) (DP:other $*))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps (V $_) (DP:other $*))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps:sub (DP:other $*) (V $_))
+ VerbPlan ? number=plural and person=secondPerson and tense=present and mood=indicative => (VP:2pp (V $_) (DP:other $*))
+ VerbPlan => (VP:other (V $_) (DP:3ps $*))
+ VerbPlan => (VP:other:sub (V $_) (DP:3ps $*))
+
+ VerbPlan ? number=singular and person=firstPerson and tense=present and mood=indicative => (VP:1ps (V $_))
+ VerbPlan ? number=singular and person=secondPerson and tense=present and mood=indicative => (VP:2ps (V $_))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps:sub (ANY $_.lexicalComplement) (V $_.head))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps:sub (V $_))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps (V $_))
+ VerbPlan ? number=plural and person=secondPerson and tense=present and mood=indicative => (VP:2pp (V $_))
+
+ VerbPlan ? verbFormMood=infinitive => (VP:inf (DP:3ps $*) (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:inf (DP:other $*) (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:inf (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:comp (DP:3ps $*) (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:comp (DP:other $*) (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:comp (V $_))
+ VerbPlan ? tense=past and verbFormMood=participle => (VP:pastpart (DP:3ps $*) (V $_))
+ VerbPlan ? tense=past and verbFormMood=participle => (VP:pastpart (DP:other $*) (V $_))
+ VerbPlan ? tense=past and verbFormMood=participle => (VP:pastpart (V $_))
+ 
+ VerbPlan => (VP:infcomp $_.lexicalComplement)
+ VerbPlan => (VP:infcomp)
+
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:1ps (V "ben") (RP "niet") (VP:comp $1))
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:2ps (V "bent") (RP "niet") (VP:comp $1))
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:3ps:sub (RP "niet") (VP:comp $1) (V "is"))
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:3ps (V "is") (RP "niet") (VP:comp $1))
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:other:sub (RP "niet") (VP:comp $1) (V "zijn"))
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:other (V "zijn") (RP "niet") (VP:comp $1))
+
+ NotVerbPlan => (VP:1ps (VP:1ps $1) (RP "niet"))
+ NotVerbPlan => (VP:2ps (VP:2ps $1) (RP "niet"))
+ NotVerbPlan => (VP:3ps:sub (RP "niet") (VP:3ps $1))
+ NotVerbPlan => (VP:3ps (VP:3ps $1) (RP "niet"))
+ NotVerbPlan => (VP:other:sub (RP "niet") (VP:other $1))
+ NotVerbPlan => (VP:other (VP:other $1) (RP "niet"))
+ NotVerbPlan => (VP:2pp (VP:2pp $1) (RP "niet"))
+
+ NotVerbPlan => (VP:inf (RP "niet") (VP:inf $1))
+ NotVerbPlan => (VP:comp (RP "niet") (VP:comp $1))
+ NotVerbPlan => (VP:pastpart (RP "niet") (VP:pastpart $1))
+ 
+ NotVerbPlan => (VP:infcomp (RP "niet") (VP:infcomp $1))
+
+ //MayVerbPlan => (VP:1ps (V "kan") (VP:inf $1))
+ //MayVerbPlan => (VP:2ps (V "kunt") (VP:inf $1))
+ MayVerbPlan => (VP:3ps:sub (VP:inf $1) (V "kan"))
+ MayVerbPlan => (VP:3ps (V "kan") (VP:inf $1))
+ MayVerbPlan => (VP:other (V "kunnen") (VP:inf $1))
+ MayVerbPlan => (VP:other:sub (VP:inf $1) (V "kunnen"))
+ MayVerbPlan => (VP:kann (VP:inf $1))
+ MayVerbPlan => (VP:inf (VP:infcomp $1) (VP "kunnen") (C:other $1))
+ MayVerbPlan => (VP:inf (VP "kunnen") (VP:inf $1))
+ //MayVerbPlan => (VP:pastpart (VP:infcomp $1) (VP "gekund") (C:other $1))
+ //MayVerbPlan => (VP:pastpart (VP "gekund") (VP:pastpart $1) )
+ MayVerbPlan => (VP:infcomp (VP:inf $1))
+ MayVerbPlan => (VP:modpast (VP:infcomp $1) (VP "kunnen") (C:other $1))
+
+ //MayNotVerbPlan => (VP:1ps (V "kan") (RP "niet") (VP:inf $1))
+ //MayNotVerbPlan => (VP:2ps (V "kunt") (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:3ps:sub (RP "niet") (V "kan") (VP:inf $1))
+ MayNotVerbPlan => (VP:3ps (V "kan") (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:other:sub (RP "niet") (VP:inf $1) (V "kunnen"))
+ MayNotVerbPlan => (VP:other (V "kunnen") (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:kann (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:inf (RP "niet") (VP:infcomp $1) (VP "kunnen") (C:other $1))
+ MayNotVerbPlan => (VP:inf (RP "niet") (V "kunnen") (VP:inf $1))
+ //MayNotVerbPlan => (VP:pastpart (RP "niet") (VP:infcomp $1) (VP "gekund") (C:other $1))
+ //MayNotVerbPlan => (VP:pastpart (RP "niet") (V "gekund") (VP:pastpart $1))
+ MayNotVerbPlan => (VP:infcomp (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:modpast (RP "niet") (VP:infcomp $1) (VP "kunnen") (C:other $1))
+
+ MustVerbPlan => (VP:1ps (V "moet") (VP:inf $1))
+ MustVerbPlan => (VP:2ps (V "moet") (VP:inf $1))
+ MustVerbPlan => (VP:3ps:sub (V "moet") (VP:inf $1))
+ MustVerbPlan => (VP:3ps (V "moet") (VP:inf $1))
+ MustVerbPlan => (VP:other:sub (V "moeten") (VP:inf $1))
+ MustVerbPlan => (VP:other (V "moeten") (VP:inf $1))
+ MustVerbPlan => (VP:muss (VP:inf $1))
+ MustVerbPlan => (VP:inf (VP:infcomp $1) (V "moeten") (C:other $1))
+ MustVerbPlan => (VP:inf (V "moeten") (VP:inf $1))
+ //MustVerbPlan => (VP:pastpart (VP:infcomp $1) (V "gemoetet") (C:other $1))
+ //MustVerbPlan => (VP:pastpart (V "gemoetet") (VP:inf $1))
+ MustVerbPlan => (VP:infcomp (VP:inf $1))
+ MustVerbPlan => (VP:modpast (VP:infcomp $1) (V "moeten") (C:other $1))
+
+ MustNotVerbPlan => (VP:1ps (V "moet") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:2ps (V "moet") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:3ps:sub (RP "niet") (V "moet") (VP:inf $1))
+ MustNotVerbPlan => (VP:3ps (V "moet") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:other:sub (V "moeten") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:other (V "moeten") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:muss (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:inf (RP "niet") (VP:infcomp $1) (V "moeten") (C:other $1))
+ MustNotVerbPlan => (VP:inf (RP "niet") (V "moeten") (VP:inf $1))
+ //MustNotVerbPlan => (VP:pastpart (RP "niet") (VP:infcomp $1) (V "gemoetet") (C:other $1))
+ //MustNotVerbPlan => (VP:pastpart (RP "niet") (V "gemoetet") (VP:inf $1))
+ MustNotVerbPlan => (VP:infcomp (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:modpast (RP "niet") (VP:infcomp $1) (V "moeten") (C:other $1))
+
+ PastPlan [AdjectivePredicativeFrame] => (VP:1ps (V "was") (VP:comp $1))
+ PastPlan [AdjectivePredicativeFrame] => (VP:2ps (V "was") (VP:comp $1))
+ PastPlan [AdjectivePredicativeFrame] => (VP:3ps:sub (VP:comp $1) (V "was"))
+ PastPlan [AdjectivePredicativeFrame] => (VP:3ps (V "was") (VP:comp $1))
+ PastPlan [AdjectivePredicativeFrame] => (VP:other:sub (VP:comp $1) (V "waren"))
+ PastPlan [AdjectivePredicativeFrame] => (VP:other (V "waren") (VP:comp $1))
+ PastPlan => (VP:other (V "had") (VP:modpast $1))
+ PastPlan => (VP:1ps (V "heb") (VP:pastpart $1))
+ PastPlan => (VP:2ps (V "hebt") (VP:pastpart $1))
+ PastPlan => (VP:3ps:sub (V "heeft") (VP:pastpart $1))
+ PastPlan => (VP:3ps (V "heeft") (VP:pastpart $1))
+ PastPlan => (VP:other:sub (V "hebben") (VP:pastpart $1))
+ PastPlan => (VP:other (V "hebben") (VP:pastpart $1))
+ PastPlan => (VP:past (VP:pastpart $1))
+ PastPlan => (VP:modpast (VP:modpast $1))
+
+ FuturePlan => (VP:1ps (V "zal") (VP:inf $1))
+ FuturePlan => (VP:2ps (V "zult") (VP:inf $1))
+ FuturePlan => (VP:3ps:sub (V "zal") (VP:inf $1))
+ FuturePlan => (VP:other:sub (V "zullen") (VP:inf $1))
+ FuturePlan => (VP:wird (VP:inf $1))
+}
+
+
+C {
+ VerbPlan [AdjectivePredicativePlan] => (C:3ps "is")
+ VerbPlan [AdjectivePredicativePlan] => (C:other "zijn")
+
+ VerbPlan => (C:3ps $_.head)
+ VerbPlan => (C:other $_.head)
+
+ NotVerbPlan => (C:3ps $1)
+ NotVerbPlan => (C:other $1)
+
+ MayVerbPlan => (C:3ps "kan")
+ MayVerbPlan => (C:other "kunnen")
+
+ MayNotVerbPlan => (C:3ps "kan")
+ MayNotVerbPlan => (C:other "kunnen")
+
+ MustVerbPlan => (C:3ps "moet")
+ MustVerbPlan => (C:other "moeten")
+
+ MustNotVerbPlan => (C:3ps "moet")
+ MustNotVerbPlan => (C:other "moeten")
+
+}
+
+Z {
+  EntryPlan ? number=massNoun => (Z:other)
+  EntryPlan => (Z:3ps)
+  YouPlan => (Z:3ps)
+}

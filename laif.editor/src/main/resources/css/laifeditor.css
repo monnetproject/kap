@@ -1,0 +1,99 @@
+/* 
+    Document   : laifeditor
+    Created on : Aug 29, 2011, 5:48:02 PM
+    Author     : jmccrae
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body{
+    font-family: Verdana,Arial,sans-serif; font-size: 1.1em;
+}
+
+.laifvariable {
+	border: 1px solid orange;
+        background: lightyellow;
+        padding-top: -2px;
+        padding-bottom: -2px;
+}
+
+.laifusercall {
+    background:thistle;
+    border: 1px solid purple;
+}
+
+.laifusercall_function {
+    color: purple;
+    border: none;
+    background: none;
+}
+
+.laifformcall {
+    border: 1px solid darkgreen;
+    background: lightgreen;
+}
+
+.laifformcall_form {
+    color:darkgreen;
+    border:none;
+    background:none;
+}
+
+.laifformcall_propkey {
+    background: deepskyblue;
+    border: 1px solid darkblue;
+}
+
+.laifformcall_propval {
+    background: skyblue;
+    border: 1px solid darkblue;
+}
+
+.laifdescriptioncall {
+    border: 1px solid red;
+    background: lightpink;
+}
+
+.laifentrypropcall {
+    border: 1px solid dodgerblue;
+    background: lightcyan;
+}
+
+tr.laiflastrow > td {
+    padding-bottom: 8px;
+}
+
+div.closebutton {
+    color:red;
+    font-weight:bold;
+}
+
+span.closebutton {
+    color:red;
+    font-weight:bold;
+}
+
+span.addbutton {
+    color: green;
+    font-weight:bold;
+    font-size:1.1em;
+}
+
+span.addusercall {
+    background:thistle;
+    border: 1px solid purple;
+}
+
+span.addformcall {
+    border: 1px solid darkgreen;
+    background: lightgreen;    
+}

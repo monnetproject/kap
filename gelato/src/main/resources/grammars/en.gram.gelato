@@ -1,0 +1,124 @@
+// Sentence block, matches when an S node is needed
+S {
+ // Simple rule $1 and $2 are substitution points for the first and second subplan
+ IfPlan => (S (S $1) (SBAR (CC "if") (S $2)))
+ QuestionPlan => (S (CP $1) "?") 
+ // VP:3ps is a tree with a property 3ps
+ PredicatePlan => (S (DP:3ps $1) (VP:3ps $2))
+ PredicatePlan => (S (DP:other $1) (VP:other $2))
+ // Rules are applied in order, hence this rule is preferred
+ // All subplans must be matched hence this only matches plans with
+ // exactly two subplans
+ ConjunctionPlan => (S (S $1) (SBAR (CC "and") (S $2)))
+ // $* means all remaining subplans compiled into a subplan of the
+ // same type
+ ConjunctionPlan => (S (S $1) (SBAR (CC ",") (S $*)))
+ ConjunctionPlan => (S $1)
+}
+
+CP {
+ PredicatePlan => (CP (C "may") (IP (DP $1)) (VP:may $2))
+ PredicatePlan => (CP (C "must") (IP (DP $1)) (VP:must $2))
+ PredicatePlan => (CP (C "will") (IP (DP $1)) (VP:will $2))
+ PredicatePlan => (CP (C "have") (IP (DP:other $1)) (VP:past $2))
+ PredicatePlan => (CP (C "has") (IP (DP:3ps $1)) (VP:past $2))
+ PredicatePlan[AdjectivePredicativeFrame] => (CP (C "is") (IP (DP:3ps $1)) (VP:comp $2))
+ PredicatePlan[AdjectivePredicativeFrame] => (CP (C "are") (IP (DP:other $1)) (VP:comp $2))
+ PredicatePlan[NounPredicateFrame] => (CP (C "is") (IP (DP:3ps $1)) (VP:comp $2))
+ PredicatePlan[NounPredicateFrame] => (CP (C "are") (IP (DP:other $1)) (VP:comp $2))
+ PredicatePlan => (CP (C:3ps "does") (IP (DP:3ps $1) (VP:inf $2)))
+ PredicatePlan => (CP (C:other "do") (IP (DP:other $1) (VP:inf $2)))
+}
+
+DP {
+ // ? is used for "guards" that find a form with the approriate properties
+ // $_ means insert the entry
+ EntryPlan ? partOfSpeech=properNoun => (DP:3ps (NP (NN $_)))
+ EntryPlan ? number=massNoun => (DP:other (DT "some") (NP (NN $_)))
+ // =~ is used for regular expression based matching to the form
+ EntryPlan =~ /[aeiou].*/ => (DP:3ps (DT "an") (NP (NN $_)))
+ // !~ is the negative of =~
+ EntryPlan !~ /[aeiou].*/ => (DP:3ps (DT "a") (NP (NN $_)))
+ YouPlan => (DP:other (PRP "you"))
+ // :%1 means the property is inhertied from the first child
+ // ! means the node will not be realized as a string
+ Epsilon => (DP:3ps (Z:3ps! $1)) 
+ Epsilon => (DP:other (Z:other! $1)) 
+ ObjectPlan => (DP $1)
+}
+
+VP {
+ VerbPlan [AdjectivePredicativeFrame] => (VP:3ps (V "is") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:other (V "are") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:inf (V "be") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:pastpart (V "been") (ADJ $_))
+ VerbPlan [AdjectivePredicativeFrame] => (VP:comp (V $_))
+ VerbPlan [NounPredicateFrame] => (VP:3ps (V "is") (DT (DP "the") (NN $_)))
+ VerbPlan [NounPredicateFrame] => (VP:other (V "are") (DT (DP "the") (NN $_)))
+ VerbPlan [NounPredicateFrame] => (VP:inf (V "be") (DT (DP "the") (NN $_)))
+ VerbPlan [NounPredicateFrame] => (VP:pastpart (V "been") (DT (DP "the") (NN $_)))
+ VerbPlan [NounPredicateFrame] => (VP:comp (DT (DP "the") (V $_)))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative => (VP:3ps (V $_) (DP $*))
+ VerbPlan ? number=singular and person=thirdPerson and tense=present and mood=indicative=> (VP:3ps (V $_))
+ VerbPlan => (VP:other (V $_) (DP $*))
+ VerbPlan => (VP:inf (V $_) (DP $*))
+ VerbPlan => (VP:comp (V $_) (DP $*))
+ VerbPlan => (VP:other (V $_))
+ VerbPlan => (VP:inf (V $_))
+ VerbPlan => (VP:comp (V $_))
+ VerbPlan ? tense=past and verbFormMood=participle => (VP:pastpart (V $_))
+
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:3ps (V "is") (RP "not") (VP:comp $1))
+ NotVerbPlan [NounPredicateFrame] => (VP:3ps (V "is") (RP "not") (VP:comp $1))
+ NotVerbPlan => (VP:3ps (V "does") (RP "not") (VP:inf $1))
+ NotVerbPlan [AdjectivePredicativeFrame] => (VP:other (V "are") (RP "not") (VP:comp $1))
+ NotVerbPlan [NounPredicateFrame] => (VP:other (V "are") (RP "not") (VP:comp $1))
+ NotVerbPlan => (VP:other (V "do") (RP "not") (VP:inf $1))
+ NotVerbPlan => (VP:inf (RP "not") (VP:inf $1))
+ NotVerbPlan => (VP:comp (RP "not") (VP:comp $1))
+ NotVerbPlan => (VP:pastpart (RP "not") (VP:pastpart $1))
+ 
+ MayVerbPlan => (VP:3ps (V "may") (VP:inf $1))
+ MayVerbPlan => (VP:other (V "may") (VP:inf $1))
+ MayVerbPlan => (VP:may (VP:inf $1))
+ MayVerbPlan => (VP:inf (ADV "possibly") (VP:inf $1))
+ MayVerbPlan => (VP:comp (ADV "possibly") (VP:comp $1))
+ MayVerbPlan => (VP:pastpart (ADV "possibly") (VP:pastpart $1))
+
+ MayNotVerbPlan => (VP:3ps (V "may") (RP "not") (VP:inf $1))
+ MayNotVerbPlan => (VP:other (V "may") (RP "not") (VP:inf $1))
+ MayNotVerbPlan => (VP:may (RP "not") (VP:inf $1))
+ MayNotVerbPlan => (VP:inf (ADV "probably not") (VP:inf $1))
+ MayNotVerbPlan => (VP:comp (ADV "probably not") (VP:comp $1))
+ MayNotVerbPlan => (VP:pastpart (FRAG "probably not") (VP:pastpart  $1))
+
+ MustVerbPlan => (VP:3ps (V "must") (VP:inf $1))
+ MustVerbPlan => (VP:other (V "must") (VP:inf $1))
+ MustVerbPlan => (VP:must (VP:inf $1))
+ MustVerbPlan => (VP:inf (V "have to") (VP:inf $1))
+ MustVerbPlan => (VP:pastpart (V "had to") (VP:inf $1))
+
+ MustNotVerbPlan => (VP:3ps (V "must") (RP "not") (VP:inf $1))
+ MustNotVerbPlan => (VP:other (V "must") (RP "not") (VP:inf $1))
+ MustNotVerbPlan => (VP:must (RP "not") (VP:inf $1))
+ MustNotVerbPlan => (VP:inf (ADV "not have to") (VP:inf $1))
+ MustNotVerbPlan => (VP:pastpart (V "not had to") (VP:inf $1))
+
+ PastPlan [AdjectivePredicateFrame] => (VP:3ps (V "was") (VP:comp $1))
+ PastPlan [AdjectivePredicateFrame] => (VP:other (V "were") (VP:comp $1))
+ PastPlan [NounPredicativeFrame] => (VP:3ps (V "was") (VP:comp $1))
+ PastPlan [NounPredicativeFrame] => (VP:other (V "were") (VP:comp $1))
+ PastPlan => (VP:3ps (V "has") (VP:pastpart $1))
+ PastPlan => (VP:other (V "have") (VP:pastpart $1))
+ PastPlan => (VP:past (VP:pastpart $1))
+
+ FuturePlan => (VP:3ps (V "will") (VP:inf $1))
+ FuturePlan => (VP:other (V "will") (VP:inf $1))
+ FuturePlan => (VP:will (VP:inf $1))
+}
+
+Z {
+  EntryPlan ? number=massNoun => (Z:other)
+  EntryPlan => (Z:3ps)
+  YouPlan => (Z:other)
+}

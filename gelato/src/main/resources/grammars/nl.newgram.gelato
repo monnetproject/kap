@@ -1,0 +1,121 @@
+S {
+ QuestionPlan => (S (CP $1) "?")
+ PredicatePlan => (S (DP:other $1) (VP:other $2))
+ PredicatePlan => (S (DP:3ps $1) (VP:3ps $2))
+ Start => (S (S $1))
+}
+
+CP {
+ PredicatePlan => (CP (C "kunnen") (IP (DP:other $1)) (VP:kan $2))
+ PredicatePlan => (CP (C "kan") (IP (DP:3ps $1)) (VP:kan $2))
+
+ PredicatePlan => (CP (C "moeten") (IP (DP:other $1)) (VP:moet $2))
+ PredicatePlan => (CP (C "moet") (IP (DP:3ps $1)) (VP:moet $2))
+
+ PredicatePlan => (CP (C "zullen") (IP (DP:other $1)) (VP:zal $2))
+ PredicatePlan => (CP (C "zal") (IP (DP:3ps $1)) (VP:zal $2))
+
+ PredicatePlan => (CP (C "haden") (IP (DP:other $1)) (VP:modpast $2))
+ PredicatePlan => (CP (C "had") (IP (DP:3ps $1)) (VP:modpast $2))
+
+ PredicatePlan => (CP (C "hebben") (IP (DP:other $1)) (VP:past $2))
+ PredicatePlan => (CP (C "had") (IP (DP:3ps $1)) (VP:past $2))
+ 
+ PredicatePlan => (CP (C:other $2) (IP (DP:other $1) (VP:infcomp $2)))
+ PredicatePlan => (CP (C:3ps $2) (IP (DP:3ps $1) (VP:infcomp $2)))
+}
+
+DP {
+ YouPlan => (DP:3ps (PRP "u"))
+ Null => (DP:other)
+}
+
+
+VP {
+ VerbPlan ? person=thirdPerson and number=singular => (VP:3ps (V $_))
+ VerbPlan => (VP:other (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:inf (V $_))
+ VerbPlan ? verbFormMood=infinitive => (VP:comp (V $_))
+ VerbPlan ? tense=past and verbFormMood=participle => (VP:pastpart (V $_))
+
+ VerbPlan => (VP:infcomp $_.lexicalComplement)
+ VerbPlan => (VP:infcomp)
+
+ NotVerbPlan => (VP:3ps (C:3ps $1) (RP "niet") (VP:infcomp $1))
+ NotVerbPlan => (VP:other (C:other $1) (RP "niet") (VP:infcomp $1))
+ NotVerbPlan => (VP:inf (RP "niet") (VP:inf $1))
+ NotVerbPlan => (VP:comp (RP "niet") (VP:comp $1))
+ NotVerbPlan => (VP:pastpart (RP "niet") (VP:pastpart $1))
+ NotVerbPlan => (VP:infcomp (RP "niet") (VP:infcomp $1))
+
+ MayVerbPlan => (VP:3ps (V "kan") (VP:inf $1))
+ MayVerbPlan => (VP:other (V "kunnen") (VP:inf $1))
+ MayVerbPlan => (VP:kan (VP:inf $1))
+ MayVerbPlan => (VP:inf (VP:infcomp $1) (VP "kunnen") (C:other $1))
+ MayVerbPlan => (VP:infcomp (VP:inf $1))
+ MayVerbPlan => (VP:modpast (VP:infcomp $1) (VP "kunnen") (C:other $1))
+
+ MayNotVerbPlan => (VP:3ps (V "kan") (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:other (V "kunnen") (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:kan (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:inf (RP "niet") (VP:infcomp $1) (VP "kunnen") (C:other $1))
+ MayNotVerbPlan => (VP:inf (RP "niet") (V "kunnen") (VP:inf $1))
+ MayNotVerbPlan => (VP:infcomp (RP "niet") (VP:inf $1))
+ MayNotVerbPlan => (VP:modpast (RP "niet") (VP:infcomp $1) (VP "kunnen") (C:other $1))
+
+ MustVerbPlan => (VP:3ps (V "moet") (VP:inf $1))
+ MustVerbPlan => (VP:other (V "moeten") (VP:inf $1))
+ MustVerbPlan => (VP:moet (VP:inf $1))
+ MustVerbPlan => (VP:inf (VP:infcomp $1) (V "moeten") (C:other $1))
+ MustVerbPlan => (VP:inf (V "moeten") (VP:inf $1))
+ MustVerbPlan => (VP:infcomp (VP:inf $1))
+ MustVerbPlan => (VP:modpast (VP:infcomp $1) (V "moeten") (C:other $1))
+
+ MustNotVerbPlan => (VP:3ps (V "moet") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:other (V "moeten") (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:moet (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:inf (RP "niet") (VP:infcomp $1) (V "moeten") (C:other $1))
+ MustNotVerbPlan => (VP:inf (RP "niet") (V "moeten") (VP:inf $1))
+ MustNotVerbPlan => (VP:infcomp (RP "niet") (VP:inf $1))
+ MustNotVerbPlan => (VP:modpast (RP "niet") (VP:infcomp $1) (V "moeten") (C:other $1))
+
+ PastPlan => (VP:3ps (V "had") (VP:modpast $1))
+ PastPlan => (VP:3ps (V "had") (VP:pastpart $1))
+ //PastPlan => (VP:other (V "hebben") (VP:pastpart $1))
+ PastPlan => (VP:modpast (VP:modpast $1))
+ PastPlan => (VP:past (VP:pastpart $1))
+ PastPlan => (VP:modpast (VP:modpast $1))
+
+ FuturePlan => (VP:3ps (V "zal") (VP:inf $1))
+ FuturePlan => (VP:other (V "zullen") (VP:inf $1))
+ FuturePlan => (VP:zal (VP:inf $1))
+}
+
+C {
+
+ VerbPlan => (C:other $_.head)
+
+ NotVerbPlan => (C:other $1)
+
+ MayVerbPlan => (C:other "kunnen")
+
+ MayNotVerbPlan => (C:other "kunnen")
+
+ MustVerbPlan => (C:other "moeten")
+
+ MustNotVerbPlan => (C:other "moeten")
+
+
+ VerbPlan ? person=thirdPerson and number=singular => (C:3ps $_.head)
+
+ NotVerbPlan => (C:3ps $1)
+
+ MayVerbPlan => (C:3ps "kan")
+
+ MayNotVerbPlan => (C:3ps "kan")
+
+ MustVerbPlan => (C:3ps "moet")
+
+ MustNotVerbPlan => (C:3ps "moet")
+
+}

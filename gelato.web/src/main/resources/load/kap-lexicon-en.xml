@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <lemon:Lexicon rdf:about="example:Lexicon__en" xmlns:lemon="http://www.monnet-project.eu/lemon#">
+    <lemon:language>en</lemon:language>
+    <lemon:entry>
+      <lemon:LexicalEntry rdf:about="example:haveValidDriversLicenseEntry__en">
+        <lemon:sense>
+          <lemon:LexicalSense>
+            <lemon:reference rdf:resource="example:haveValidDriversLicense"/>
+          </lemon:LexicalSense>
+        </lemon:sense>
+        <lemon:canonicalForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">have a valid driver's license</lemon:writtenRep>
+          </lemon:Form>
+        </lemon:canonicalForm>
+        <lemon:synBehavior>
+          <lemon:Frame>
+            <lemon:synArg>
+              <lemon:Argument/>
+            </lemon:synArg>
+          </lemon:Frame>
+        </lemon:synBehavior>
+        <lemon:otherForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">has a valid driver's license</lemon:writtenRep>
+            <lexinfo:number rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#singular" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:mood rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#indicative" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:tense rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#present" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:person rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+          </lemon:Form>
+        </lemon:otherForm>
+      </lemon:LexicalEntry>
+    </lemon:entry>
+    <lemon:entry>
+      <lemon:LexicalEntry rdf:about="example:workAsEntry__en">
+        <lemon:sense>
+          <lemon:LexicalSense>
+            <lemon:reference rdf:resource="example:workAs"/>
+          </lemon:LexicalSense>
+        </lemon:sense>
+        <lemon:canonicalForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">work as</lemon:writtenRep>
+          </lemon:Form>
+        </lemon:canonicalForm>
+        <lemon:synBehavior>
+          <lemon:Frame>
+            <lemon:synArg>
+              <lemon:Argument/>
+            </lemon:synArg>
+            <lemon:synArg>
+              <lemon:Argument/>
+            </lemon:synArg>
+          </lemon:Frame>
+        </lemon:synBehavior>
+        <lemon:otherForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">work as</lemon:writtenRep>
+            <lexinfo:number rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#singular" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:mood rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#indicative" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:tense rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#present" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:person rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+          </lemon:Form>
+        </lemon:otherForm>
+      </lemon:LexicalEntry>
+    </lemon:entry>
+    <lemon:entry>
+      <lemon:LexicalEntry rdf:about="example:over18Entry__en">
+        <lemon:sense>
+          <lemon:LexicalSense>
+            <lemon:reference rdf:resource="example:over18"/>
+          </lemon:LexicalSense>
+        </lemon:sense>
+        <lemon:canonicalForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">over 18</lemon:writtenRep>
+          </lemon:Form>
+        </lemon:canonicalForm>
+        <lemon:synBehavior>
+          <lemon:Frame>
+            <rdf:type rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#AdjectivePredicativeFrame"/>
+            <lemon:synArg>
+              <lemon:Argument/>
+            </lemon:synArg>
+          </lemon:Frame>
+        </lemon:synBehavior>
+        <lemon:otherForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">over 18</lemon:writtenRep>
+            <lexinfo:number rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#singular" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:mood rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#indicative" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:tense rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#present" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:person rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+          </lemon:Form>
+        </lemon:otherForm>
+      </lemon:LexicalEntry>
+    </lemon:entry>
+    <lemon:entry>
+      <lemon:LexicalEntry rdf:about="example:truckDriverEntry__en">
+        <lemon:sense>
+          <lemon:LexicalSense>
+            <lemon:reference rdf:resource="example:truckDriver"/>
+          </lemon:LexicalSense>
+        </lemon:sense>
+        <lemon:canonicalForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">truck driver</lemon:writtenRep>
+          </lemon:Form>
+        </lemon:canonicalForm>
+      </lemon:LexicalEntry>
+    </lemon:entry>
+    <lemon:entry>
+      <lemon:LexicalEntry rdf:about="example:liveInHollandEntry__en">
+        <lemon:sense>
+          <lemon:LexicalSense>
+            <lemon:reference rdf:resource="example:liveInHolland"/>
+          </lemon:LexicalSense>
+        </lemon:sense>
+        <lemon:canonicalForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">live in Holland</lemon:writtenRep>
+          </lemon:Form>
+        </lemon:canonicalForm>
+        <lemon:synBehavior>
+          <lemon:Frame>
+            <lemon:synArg>
+              <lemon:Argument/>
+            </lemon:synArg>
+          </lemon:Frame>
+        </lemon:synBehavior>
+        <lemon:otherForm>
+          <lemon:Form>
+            <lemon:writtenRep xml:lang="en">lives in Holland</lemon:writtenRep>
+            <lexinfo:number rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#singular" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:mood rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#indicative" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:tense rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#present" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+            <lexinfo:person rdf:resource="http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson" xmlns:lexinfo="http://www.lexinfo.net/ontology/2.0/lexinfo#"/>
+          </lemon:Form>
+        </lemon:otherForm>
+      </lemon:LexicalEntry>
+    </lemon:entry>
+  </lemon:Lexicon>
+</rdf:RDF>
