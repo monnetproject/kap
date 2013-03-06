@@ -10,5 +10,3 @@ of the following components:
  * `gelato`: Generation of Language and Text from Ontologies
  * `gelato.web`: Web demonstrator of Gelato
 
-JavaDoc is at http://monnetproject.deri.ie/gelato/javadoc
-ScalaDoc is at http://monnetproject.deri.ie/gelato/scaladoc
