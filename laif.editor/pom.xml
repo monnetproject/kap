@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>eu.monnetproject</groupId>
+    <groupId>com.github.monnetproject</groupId>
     <artifactId>kap.laif.editor</artifactId>
     <packaging>war</packaging>
     <version>1.13.3</version>
 
-    <name>eu.monnetproject.kap.laif.editor WAR</name>
+    <name>com.github.monnetproject.kap.laif.editor WAR</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

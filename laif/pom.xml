@@ -4,12 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>kap.project</artifactId>
-    <groupId>eu.monnetproject</groupId>
+    <groupId>com.github.monnetproject</groupId>
     <version>1.13.3</version>
   </parent>
   <artifactId>kap.laif</artifactId>
   <packaging>bundle</packaging>
-  <name>eu.monnetproject.kap.laif OSGi Bundle</name>
+  <name>com.github.monnetproject.kap.laif OSGi Bundle</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

@@ -3,7 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>eu.monnetproject</groupId>
+        <groupId>com.github.monnetproject</groupId>
         <artifactId>project-scala</artifactId>
         <version>1.13.3</version>
         <relativePath>..</relativePath>
@@ -11,7 +11,7 @@
     <artifactId>kap.gelato</artifactId>
     <packaging>bundle</packaging>
 
-    <name>eu.monnetproject.kap.gelato OSGi Bundle</name>
+    <name>com.github.monnetproject.kap.gelato OSGi Bundle</name>
 
     <dependencies>
         <dependency>
@@ -80,7 +80,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Private-Package>eu.monnetproject.gelato*</Private-Package>
+                        <Private-Package>com.github.monnetproject.gelato*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>
