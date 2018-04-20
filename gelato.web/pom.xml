@@ -1,80 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.monnetproject</groupId>
+  <artifactId>kap.gelato.web</artifactId>
+  <version>1.18.4</version>
+  <packaging>jar</packaging>
 
-    <parent>
-        <groupId>com.github.monnetproject</groupId>
-        <artifactId>project-scala</artifactId>
-        <version>1.13.3</version>
-        <relativePath>..</relativePath>
-    </parent>
-    
-        
-    <groupId>com.github.monnetproject</groupId>
-    <artifactId>kap.gelato.web</artifactId>
-    <packaging>war</packaging>
+  <name>com.github.monnetproject.kap.gelato.web WAR</name>
+  <description>com.github.monnetproject.kap.gelato.web WAR from the Monnet Project's project-scala project.</description>
+  <url>https://github.com/monnetproject/project-scala</url>
 
-    <name>com.github.monnetproject.kap.gelato.web WAR</name>
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <scala.version>2.9.0</scala.version>
+  </properties>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  <licenses>
+    <license>
+      <name>BSD 3-clause "New" or "Revised" License</name>
+      <url>https://github.com/monnetproject/project-scala/blob/master/LICENSE</url>
+    </license>
+  </licenses>
 
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kap.gelato</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>ontology.label</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kap.laif</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
+  <developers>
+    <developer>
+      <name>John P. McCrae</name>
+      <email>john@mccr.ae</email>
+      <organization>Insight Centre for Data Analytics, NUI Galway</organization>
+      <organizationUrl>http://www.insight-centre.org/</organizationUrl>
+    </developer>
+  </developers>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.9</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+  <scm>
+      <connection>scm:git:git://github.com/monnetproject/project-scala.git</connection>
+      <developerConnection>scm:git:ssh://github.com:monnetproject/project-scala.git</developerConnection>
+      <url>http://github.com/monnetproject/project-scala/tree/master</url>
+   </scm>
 
+   <build>
+       <plugins>
+           <plugin>
+               <groupId>org.sonatype.plugins</groupId>
+               <artifactId>nexus-staging-maven-plugin</artifactId>
+               <version>1.6.7</version>
+               <extensions>true</extensions>
+               <configuration>
+                   <serverId>ossrh</serverId>
+                   <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                   <autoReleaseAfterClose>true</autoReleaseAfterClose>
+               </configuration>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-source-plugin</artifactId>
+               <version>2.2.1</version>
+               <executions>
+                   <execution>
+                       <id>attach-sources</id>
+                       <goals>
+                           <goal>jar-no-fork</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-javadoc-plugin</artifactId>
+               <version>2.9.1</version>
+               <executions>
+                   <execution>
+                       <id>attach-javadocs</id>
+                       <goals>
+                           <goal>jar</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-gpg-plugin</artifactId>
+               <version>1.5</version>
+               <executions>
+                   <execution>
+                       <id>sign-artifacts</id>
+                       <phase>verify</phase>
+                       <goals>
+                           <goal>sign</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+
+
+       </plugins>
+   </build>
+
+   <dependencies>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.8.2</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>kap.gelato</artifactId>
+    <version>${project.version}</version>
+</dependency><dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>ontology.label</artifactId>
+    <version>${project.version}</version>
+</dependency><dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>kap.laif</artifactId>
+    <version>${project.version}</version>
+</dependency><dependency>
+    <groupId>javax</groupId>
+    <artifactId>javaee-web-api</artifactId>
+    <version>6.0</version>
+    <scope>provided</scope>
+</dependency>
+   </dependencies>
 </project>
+

@@ -1,87 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.monnetproject</groupId>
+  <artifactId>kap.laif.editor</artifactId>
+  <version>1.18.4</version>
+  <packaging>jar</packaging>
 
-    <groupId>com.github.monnetproject</groupId>
-    <artifactId>kap.laif.editor</artifactId>
-    <packaging>war</packaging>
-    <version>1.13.3</version>
+  <name>com.github.monnetproject.kap.laif.editor WAR</name>
+  <description>com.github.monnetproject.kap.laif.editor WAR from the Monnet Project's  project.</description>
+  <url>https://github.com/monnetproject/</url>
 
-    <name>com.github.monnetproject.kap.laif.editor WAR</name>
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <scala.version>2.9.0</scala.version>
+  </properties>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+  <licenses>
+    <license>
+      <name>BSD 3-clause "New" or "Revised" License</name>
+      <url>https://github.com/monnetproject//blob/master/LICENSE</url>
+    </license>
+  </licenses>
 
-    <dependencies>        
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.9.1</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>kap.laif</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>scalasemweb</groupId>
-            <artifactId>scalasemweb</artifactId>
-            <version>1.1.2_2.9.1</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>framework.services</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>javax.servlet</artifactId>
-                    <groupId>org.apache.felix</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency><dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>servlet-api</artifactId>
-	<version>2.5</version>
+  <developers>
+    <developer>
+      <name>John P. McCrae</name>
+      <email>john@mccr.ae</email>
+      <organization>Insight Centre for Data Analytics, NUI Galway</organization>
+      <organizationUrl>http://www.insight-centre.org/</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+      <connection>scm:git:git://github.com/monnetproject/.git</connection>
+      <developerConnection>scm:git:ssh://github.com:monnetproject/.git</developerConnection>
+      <url>http://github.com/monnetproject//tree/master</url>
+   </scm>
+
+   <build>
+       <plugins>
+           <plugin>
+               <groupId>org.sonatype.plugins</groupId>
+               <artifactId>nexus-staging-maven-plugin</artifactId>
+               <version>1.6.7</version>
+               <extensions>true</extensions>
+               <configuration>
+                   <serverId>ossrh</serverId>
+                   <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                   <autoReleaseAfterClose>true</autoReleaseAfterClose>
+               </configuration>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-source-plugin</artifactId>
+               <version>2.2.1</version>
+               <executions>
+                   <execution>
+                       <id>attach-sources</id>
+                       <goals>
+                           <goal>jar-no-fork</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-javadoc-plugin</artifactId>
+               <version>2.9.1</version>
+               <executions>
+                   <execution>
+                       <id>attach-javadocs</id>
+                       <goals>
+                           <goal>jar</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-gpg-plugin</artifactId>
+               <version>1.5</version>
+               <executions>
+                   <execution>
+                       <id>sign-artifacts</id>
+                       <phase>verify</phase>
+                       <goals>
+                           <goal>sign</goal>
+                       </goals>
+                   </execution>
+               </executions>
+           </plugin>
+
+
+       </plugins>
+   </build>
+
+   <dependencies>
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.8.2</version>
+    <scope>test</scope>
 </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1.1</version>
-            </plugin>
-            <plugin>
-                <groupId>org.scala-tools</groupId>
-                <artifactId>maven-scala-plugin</artifactId>
-                <version>2.9</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <goal>testCompile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
+<dependency>
+    <groupId>org.scala-lang</groupId>
+    <artifactId>scala-library</artifactId>
+    <version>2.9.1</version>
+</dependency><dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>kap.laif</artifactId>
+    <version>${project.version}</version>
+</dependency><dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.2.2</version>
+</dependency><dependency>
+    <groupId>scalasemweb</groupId>
+    <artifactId>scalasemweb</artifactId>
+    <version>1.1.2_2.9.1</version>
+</dependency><dependency>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>framework.services</artifactId>
+    <version>${project.version}</version>
+    <exclusions>
+        <exclusion>
+            <artifactId>javax.servlet</artifactId>
+            <groupId>org.apache.felix</groupId>
+        </exclusion>
+    </exclusions>
+</dependency><dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>servlet-api</artifactId>
+    <version>2.5</version>
+</dependency>
+   </dependencies>
 </project>
+
